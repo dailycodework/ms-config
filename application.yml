@@ -1,0 +1,39 @@
+## base yml file for all services in the config service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    prefer-ip-address: false
+    hostname: ${HOSTNAME}
+## Actuator related configurations
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    gateway:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: kafka:9092
+      default:
+        contentType: application/json
+        group: ${spring.application.name}-group
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: Vet-Links ${spring.application.name} Management Service
+    version: 1.0.0

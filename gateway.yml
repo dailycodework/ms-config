@@ -1,0 +1,51 @@
+## gateway service
+server:
+  port: 9007
+spring:
+  application:
+    name: gateway
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cloud:
+    gateway:
+      cache:
+        ttl-seconds: 300
+      server:
+        webflux:
+          default-filters:
+            - AddRequestHeader=X-Auth-Source, Gateway
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY, SERVICE_UNAVAILABLE, GATEWAY_TIMEOUT
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
+
+          discovery:
+            locator:
+              lower-case-service-id: true
+              enabled: true
+## Actuator related configurations
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    gateway:
+      access: unrestricted
+  info:
+    env:
+      enabled: true

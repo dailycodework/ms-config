@@ -1,0 +1,28 @@
+### The pet-service yml inside the config server
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://pet-db:3306/pet_db
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      format-sql: true
+
+  cloud:
+    function:
+      definition: >
+        processSaveAppointmentPets;
+        processDeleteAppointmentPets
+    stream:
+      bindings:
+        processSaveAppointmentPets-in-0:
+          destination: appointment-booked
+        processSaveAppointmentPets-out-0:
+          destination: appointment-booked-complete
+        processDeleteAppointmentPets-in-0:
+          destination: delete-appointments-pets
+        processDeleteAppointmentPets-out-0:
+          destination: delete-user-complete

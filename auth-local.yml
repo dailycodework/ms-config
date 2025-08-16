@@ -1,0 +1,23 @@
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        registerUser-out-0:
+          destination: create-user-request
+        deleteUser-out-0:
+          destination: delete-user-request
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/auth_db
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      format-sql: true
+
+jwt:
+  secret: ${JWT_SECRET}
