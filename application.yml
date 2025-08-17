@@ -35,6 +35,7 @@ spring:
 info:
   app:
     name: ${spring.application.name}
-    description: Vet-Links ${spring.application.name} Management Service from GitHub
+    description: Vet-Links ${spring.application.name} Management Service from GitHub new updated
 
     version: 1.0.0
+
