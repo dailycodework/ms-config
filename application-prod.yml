@@ -1,10 +1,10 @@
-## base yml file for all services in the config service
+## base yml file for all services for prod profile in the config service
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://discovery:8761/eureka/
   instance:
     prefer-ip-address: true
     hostname: localhost
@@ -14,7 +14,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: refresh,busrefresh
 
   endpoint:
     gateway:
@@ -28,7 +28,14 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:29092
+          brokers: kafka:9092
       default:
         contentType: application/json
         group: ${spring.application.name}-group
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: Vet-Links ${spring.application.name} Management Service Prod
+    version: 1.0.0
+
