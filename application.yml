@@ -35,8 +35,9 @@ spring:
 info:
   app:
     name: ${spring.application.name}
-    description: Vet-Links ${spring.application.name} Management Service from GitHub has been newly updated with Spring Cloud Bus
+    description: Vet-Links ${spring.application.name} Management Service from GitHub Spring Cloud Bus and Wenhooks
 
     version: 1.0.0
+
 
 
