@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3310/appointment_db
+    url: jdbc:mysql://localhost:3310/appointment_d
     username: root
     password: root
   jpa:
@@ -26,3 +26,4 @@ spring:
           destination: delete-user-appointments
         processUserAppointmentsDeletion-out-0:
           destination: delete-appointments-pets
+
