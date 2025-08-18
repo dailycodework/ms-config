@@ -35,8 +35,9 @@ spring:
 info:
   app:
     name: ${spring.application.name}
-    description: Vet-Links ${spring.application.name} Management Service Prod
+    description: Vet-Links ${spring.application.name} Management Service Prod from docker
     version: 1.0.0
+
 
 
 
