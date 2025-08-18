@@ -7,8 +7,7 @@ eureka:
       defaultZone: http://discovery:8761/eureka/
   instance:
     prefer-ip-address: false
-    hostname: ${spring.application.name}
-    instance-id: ${spring.application.name}:${server.port}
+    hostname: ${HOSTNAME}   
 ## Actuator related configurations
 management:
   endpoints:
@@ -38,6 +37,7 @@ info:
     name: ${spring.application.name}
     description: Vet-Links ${spring.application.name} Management Service Prod
     version: 1.0.0
+
 
 
 
